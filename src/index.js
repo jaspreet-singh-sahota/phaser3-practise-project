@@ -21,6 +21,12 @@ gameScene.create = function () {
   player.setScale(0.5, 0.5)
   player.x = 50
 
+  let enemy = this .add.sprite(gameW/3, gameH/1.5 , 'enemy')
+  let enemy1 = this .add.sprite(gameW/4, gameH/2 , 'enemy')
+  enemy1.setScale(0.5, 0.5)
+  enemy.setScale(0.5, 0.5)
+  enemy1.flipX = true
+
 };
 
 let config = {
