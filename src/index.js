@@ -52,6 +52,15 @@ gameScene.update = function () {
     this.player.x += this.playerSpeed;
   }
 
+  let playerRect = this.player.getBounds();
+  let treasureRect = this.goal.getBounds();
+
+  if (Phaser.Geom.Intersects.RectangleToRectangle(playerRect, treasureRect)) {
+    console.log('reached goal!');
+
+    this.scene.restart();
+    return;
+  }
 };
 
 let config = {
