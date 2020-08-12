@@ -16,16 +16,29 @@ gameScene.create = function () {
 
   bg.setPosition(gameW / 2, gameH / 2);
 
-  let player = this.add.sprite(gameW/4 , gameH/2, 'player')
+  this.player = this.add.sprite(gameW/4 , gameH/2, 'player')
 
-  player.setScale(0.5, 0.5)
-  player.x = 50
+  this.player.setScale(0.5, 0.5)
+  this.player.x = 50
 
-  let enemy = this .add.sprite(gameW/3, gameH/1.5 , 'enemy')
-  let enemy1 = this .add.sprite(gameW/4, gameH/2 , 'enemy')
-  enemy1.setScale(0.5, 0.5)
-  enemy.setScale(0.5, 0.5)
-  enemy1.flipX = true
+  this.enemy = this .add.sprite(gameW/3, gameH/1.5 , 'enemy')
+  this.enemy1 = this .add.sprite(gameW/4, gameH/2 , 'enemy')
+  this.enemy1.setScale(0.5, 0.5)
+  this.enemy.setScale(0.5, 0.5)
+  this.enemy1.flipX = true
+
+};
+
+gameScene.update = function () {
+  // //this.enemy1.x += 1;
+
+  // this.enemy1.angle += 1;
+  // this.enemy
+
+  if (this.player.scaleX < 0.8) {
+    this.player.scaleX += 0.005;
+    this.player.scaleY += 0.005;
+  }
 
 };
 
