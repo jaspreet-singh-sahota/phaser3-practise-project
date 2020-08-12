@@ -2,6 +2,10 @@ import './styles/style.css';
 
 let gameScene = new Phaser.Scene('Game');
 
+gameScene.init = function () {
+  this.playerSpeed = 3;
+};
+
 gameScene.preload = function () {
   this.load.image('background', 'assets/background.png');
   this.load.image('player', 'assets/player.png');
@@ -39,12 +43,14 @@ gameScene.update = function () {
   // this.enemy1.angle += 1;
   // this.enemy
 
-  if (this.player.scaleX < 0.8) {
-    this.player.scaleX += 0.005;
-    this.player.scaleY += 0.005;
-  }
+  // if (this.player.scaleX < 0.8) {
+  //   this.player.scaleX += 0.005;
+  //   this.player.scaleY += 0.005;
+  // }
 
-  
+  if (this.input.activePointer.isDown) {
+    this.player.x += this.playerSpeed;
+  }
 
 };
 
