@@ -4,6 +4,12 @@ let gameScene = new Phaser.Scene('Game');
 
 gameScene.init = function () {
   this.playerSpeed = 3;
+
+  this.enemyMinSpeed = 2;
+  this.enemyMaxSpeed = 4;
+
+  this.enemyMinY = 80;
+  this.enemyMaxY = 280;
 };
 
 gameScene.preload = function () {
@@ -26,14 +32,19 @@ gameScene.create = function () {
   this.player.setScale(0.5, 0.5)
   this.player.x = 50
   
-  this.treasure = this.add.sprite(gameW/1.1 , gameH/2, 'treasure')
-  this.treasure.setScale(0.5, 0.5)
+  this.goal = this.add.sprite(gameW/1.1 , gameH/2, 'treasure')
+  this.goal.setScale(0.5, 0.5)
 
   this.enemy = this .add.sprite(gameW/3, gameH/1.5 , 'enemy')
   this.enemy1 = this .add.sprite(gameW/4, gameH/2 , 'enemy')
   this.enemy1.setScale(0.5, 0.5)
   this.enemy.setScale(0.5, 0.5)
-  this.enemy1.flipX = true
+  this.enemy.flipX = true
+
+  let dir = Math.random() < 0.5 ? 1 : -1;
+  let speed = this.enemyMinSpeed + Math.random() * (this.enemyMaxSpeed - this.enemyMinSpeed);
+  this.enemy.speed = dir * speed;
+
 
 };
 
@@ -60,6 +71,15 @@ gameScene.update = function () {
 
     this.scene.restart();
     return;
+  }
+
+  this.enemy.y += this.enemy.speed;
+
+  let conditionUp = this.enemy.speed < 0 && this.enemy.y <= this.enemyMinY;
+  let conditionDown = this.enemy.speed > 0 && this.enemy.y >= this.enemyMaxY;
+
+  if (conditionUp || conditionDown) {
+    this.enemy.speed *= -1;
   }
 };
 
